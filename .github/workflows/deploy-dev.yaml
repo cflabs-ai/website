@@ -1,0 +1,18 @@
+name: nextjs-deploy-dev-cloud-run
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    uses: ./.github/workflows/deploy-common.yaml
+    with:
+      environment: development
+      cloudrun-service: cflabs-web-dev
+      cloudrun-region: us-central1
+      artifact-repo-build-prefix: build-dev-
+      artifact-repo-name: us-west1-docker.pkg.dev/zkpool-web/zkpool-web/cflabs-web-dev
+    secrets: inherit
