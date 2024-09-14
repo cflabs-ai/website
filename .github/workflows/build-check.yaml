@@ -19,7 +19,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v2
         with:
-          node-version: 18.12.x
+          node-version: 18.17.x
           cache: "npm"  # local act does not work here
       
       - name: Install
