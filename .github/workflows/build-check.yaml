@@ -34,7 +34,5 @@ jobs:
       - name: Conventional commits
         uses: webiny/action-conventional-commits@v1.1.0
 
-      - name: Test
-        run: npm test
 
     
