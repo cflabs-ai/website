@@ -10,7 +10,7 @@ export const navItems = [
   "About",
   "Vision",
   "Team",
-  "Partners",
+  // "Partners",
   "Contact",
 ];
 

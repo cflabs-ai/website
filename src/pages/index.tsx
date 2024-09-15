@@ -23,7 +23,7 @@ export default function Home() {
         </h1>
       </div>
       <OurTeam />
-      <Partners />
+      {/* <Partners /> */}
       <ContactUs />
     </Layout>
   );

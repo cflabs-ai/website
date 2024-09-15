@@ -1,12 +1,7 @@
 export default function HeroImage() {
   return (
     <div className="h-full w-full flex items-center">
-      <svg
-        width="100%"
-
-        viewBox="0 0 1004 240"
-        fill="none"
-      >
+      <svg width="100%" viewBox="0 0 1004 240" fill="none">
         <path
           d="M515.34 132.58H476.74C462.246 132.58 450.5 120.834 450.5 106.34V67.74C450.5 53.2461 462.246 41.5 476.74 41.5H515.34C529.834 41.5 541.58 53.2461 541.58 67.74V106.34C541.58 120.824 529.834 132.58 515.34 132.58Z"
           fill="#181818"
@@ -158,22 +153,24 @@ export default function HeroImage() {
             fill="url(#paint21_linear_39_674)"
           />
         </g>
-        <g filter="url(#filter1_f_39_674)">
-          <path d="M406 87L349 87" stroke="#35F4B0" />
-        </g>
-        <g filter="url(#filter2_f_39_674)">
-          <path d="M406 87L349 87" stroke="#35F4B0" />
-        </g>
-        <g filter="url(#filter3_f_39_674)">
-          <path d="M406 87L349 87" stroke="#35F4B0" />
-        </g>
-        <path
-          d="M400 87L355 87"
-          stroke="url(#paint22_linear_39_674)"
-          strokeWidth="2"
-          strokeLinecap="round"
-        />
-        <g filter="url(#filter4_f_39_674)">
+        {/* <g className="racing-light-1">
+          <g filter="url(#filter1_f_39_674)">
+            <path d="M406 87L349 87" stroke="#35F4B0" />
+          </g>
+          <g filter="url(#filter2_f_39_674)">
+            <path d="M406 87L349 87" stroke="#35F4B0" />
+          </g>
+          <g filter="url(#filter3_f_39_674)">
+            <path d="M406 87L349 87" stroke="#35F4B0" />
+          </g>
+          <path
+            d="M400 87L355 87"
+            stroke="url(#paint22_linear_39_674)"
+            strokeWidth="2"
+            strokeLinecap="round"
+          />
+        </g> */}
+        {/* <g filter="url(#filter4_f_39_674)">
           <path d="M696 70L753 70" stroke="#35F4B0" />
         </g>
         <g filter="url(#filter5_f_39_674)">
@@ -187,7 +184,7 @@ export default function HeroImage() {
           stroke="url(#paint23_linear_39_674)"
           strokeWidth="2"
           strokeLinecap="round"
-        />
+        /> */}
         <path
           d="M974.833 109.589C976.467 109.005 978.647 108.667 981 108.667C983.353 108.667 985.533 109.005 987.167 109.589C987.979 109.879 988.719 110.251 989.278 110.723C989.831 111.191 990.333 111.871 990.333 112.75C990.333 113.52 989.679 114.531 987.903 115.419C986.197 116.272 983.758 116.833 981 116.833C978.242 116.833 975.803 116.272 974.097 115.419C972.321 114.531 971.667 113.52 971.667 112.75C971.667 111.871 972.169 111.191 972.722 110.723C973.281 110.251 974.021 109.879 974.833 109.589Z"
           fill="url(#paint24_linear_39_674)"
@@ -661,9 +658,9 @@ export default function HeroImage() {
           </linearGradient>
           <linearGradient
             id="paint23_linear_39_674"
-            x1="747"
+            x1="635"
             y1="70.5"
-            x2="702"
+            x2="590"
             y2="70.5"
             gradientUnits="userSpaceOnUse"
           >
