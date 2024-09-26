@@ -7,14 +7,14 @@ const collaborators = [
     title: "Intchains Group",
     description:
       "Leading provider of integrated solutions consisting of high-performance application specific integrated circuit (ASIC) chips and ancillary software and hardware for blockchain applications.",
-    link: "https://google.com",
+    link: "https://intchains.com/",
     background: <AboutCardIntchainsBg />,
   },
   {
     title: "Aoraki Labs",
     description:
-      "Focusing on building the next generation of computation (ZKP, FHE, AI) infrastructure for blockchain.",
-    link: "https://google.com",
+      "We build the next generation of computational infrastructure for AI and blockchain.",
+    link: "https://aoraki-labs.io/",
     background: <AboutCardAorakiBg />,
   },
 ];
