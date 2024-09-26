@@ -17,8 +17,8 @@ export const navItems = [
 export default function NavBar({ location }: { location: string }) {
   const socials = [
     { name: "Medium", link: "https://medium.com/", icon: SocialMedium },
-    { name: "X", link: "https://google.com/", icon: SocialX },
-    { name: "Email", link: "mailto: jfdk242t2g@gmail.com", icon: SocialEmail },
+    { name: "X", link: "https://x.com/CFrontier_Labs", icon: SocialX },
+    { name: "Email", link: "mailto: hello@cflabs.ai", icon: SocialEmail },
   ];
   const [mobileNavIsOpen, setMobileNavIsOpen] = useState<boolean>(false);
 
