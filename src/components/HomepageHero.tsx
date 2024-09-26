@@ -25,19 +25,14 @@ export default function HomepageHero() {
       </div>
       <div className="text-xl sm:text-3xl md:text-4xl lg:text-[3.5rem] font-[300] px-4">
         <h1 className="mx-auto max-w-[1200px] text-center mb-1 sm:mb-3 lg:mb-7">
-          <span className="mx-auto max-w-[1000px] text-transparent bg-clip-text bg-gradient-to-r from-neutral-400 via-neutral-200 to-neutral-400 text-center">
-            Accelerating verifiable decentralized computing
-          </span>
-        </h1>
-        <h1 className="mx-auto max-w-[1200px] text-center">
-          <span className="mx-auto max-w-[1000px] text-transparent bg-clip-text bg-gradient-to-r from-neutral-400 via-neutral-200 to-neutral-400 text-center">
-            for Blockchain
+          <span className="mx-auto max-w-[1200px] text-transparent bg-clip-text bg-gradient-to-r from-neutral-400 via-neutral-200 to-neutral-400 text-center">
+            Accelerating Verifiable Decentralized Computing
           </span>
         </h1>
       </div>
       <p className="max-w-[800px] mx-auto py-6 lg:py-12 px-4 text-center text-sm sm:text-xl md:text-2xl font-[200] md:leading-normal text-smoke">
         Researching cutting-edge computation technology in blockchain with hardware, 
-        including zero-knowledge proofs, and AI.
+        including Zero-Knowledge Proof, and AI.
       </p>
       <div className="relative max-w-[1200px] w-full px-10">
         <div className="absolute w-full h-full top-[0] left-[0] z-[10] px-10">
