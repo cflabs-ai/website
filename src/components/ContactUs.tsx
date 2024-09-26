@@ -11,7 +11,7 @@ export default function ContactUs() {
         Get in touch with us for inquiries, partnerships, or to learn more about
         our services and solutions.
       </p>
-      <a href="mailto:feiwqonvdao32r@gmail.com">
+      <a href="mailto:hello@cflabs.ai">
         <div className="flex items-center justify-center w-[118px] h-[48px] rounded-full bg-mint text-black font-[300] hover:bg-emerald-200">
           Contact Us
         </div>
