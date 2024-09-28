@@ -1,14 +1,22 @@
 import AboutCardAorakiBg from "./svg/AboutCardAorakiBg";
-import AboutCardIcon from "./svg/AboutCardIcon";
 import AboutCardIntchainsBg from "./svg/AboutCardIntchainsBg";
 
-const collaborators = [
+type Collaborator = {
+  title: string;
+  description: string;
+  link: string;
+  background: JSX.Element;
+  logoPath: string;
+};
+
+const collaborators: Collaborator[] = [
   {
     title: "Intchains Group",
     description:
       "Leading provider of integrated solutions consisting of high-performance application specific integrated circuit (ASIC) chips and ancillary software and hardware for blockchain applications.",
     link: "https://intchains.com/",
     background: <AboutCardIntchainsBg />,
+    logoPath: "intchains.png",
   },
   {
     title: "Aoraki Labs",
@@ -16,24 +24,33 @@ const collaborators = [
       "We build the next generation of computational infrastructure for AI and blockchain.",
     link: "https://aoraki-labs.io/",
     background: <AboutCardAorakiBg />,
+    logoPath: "aoraki.png",
   },
 ];
 
 export default function AboutUs() {
-  const Card = (
-    title: string,
-    description: string,
-    link: string,
-    background: JSX.Element
-  ) => (
-    <div key={title} className="relative flex flex-col justify-start w-full md:h-[500px] lg:h-[580px] text-left p-10">
+  const buildCard = ({
+    title,
+    description,
+    link,
+    background,
+    logoPath,
+  }: Collaborator) => (
+    <div
+      key={title}
+      className="relative flex flex-col justify-start w-full md:h-[500px] lg:h-[580px] text-left p-10"
+    >
       <div className="absolute w-full h-full top-0 left-0 z-[-1] rounded-2xl">
         {background}
       </div>
       <div className="absolute w-full h-full top-0 left-0 z-[-2] bg-gradient-to-tr from-mint from-[-100%] to-50% to-transparent opacity-25 rounded-2xl" />
       <div className="absolute w-full h-full top-0 left-0 z-[-2] bg-gradient-to-bl from-mint from-[-100%] to-50% to-transparent opacity-25 rounded-2xl" />
-      <div className="h-[50px] md:h-[80px]">
-        <AboutCardIcon />
+      <div className="w-[50px] md:w-[80px] h-auto">
+        <img
+          src={logoPath}
+          alt={title}
+          className="h-auto w-full"
+        />
       </div>
       <h3 className="sm:text-[1.2rem] md:text-[1.4rem] lg:text-[1.75rem] font-[200] mt-4 md:mt-10">
         {title}
@@ -47,12 +64,7 @@ export default function AboutUs() {
         <div className="flex">
           <p>Learn more</p>
           <div className="h-[17px] w-[20px] ml-2 mt-[2px]">
-            <svg
-              width="100%"
-              height="100%"
-              viewBox="0 0 16 16"
-              fill="none"
-            >
+            <svg width="100%" height="100%" viewBox="0 0 16 16" fill="none">
               <path
                 d="M2.66663 8H13.3333M13.3333 8L9.33329 4M13.3333 8L9.33329 12"
                 stroke="white"
@@ -76,14 +88,7 @@ export default function AboutUs() {
         A Joint Venture of Intchains Group & Aoraki Labs.
       </h4>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-10 m-10">
-        {collaborators.map((collaborator) =>
-          Card(
-            collaborator.title,
-            collaborator.description,
-            collaborator.link,
-            collaborator.background
-          )
-        )}
+        {collaborators.map((collaborator) => buildCard(collaborator))}
       </div>
     </div>
   );

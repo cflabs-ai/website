@@ -20,19 +20,17 @@ export default function HomepageHero() {
 
   return (
     <div className="relative flex flex-col justify-center items-center w-full h-full my-[3rem] sm:my-[7rem]">
-      <div className="absolute w-full h-full top-[100px] sm:top-[150px] md:top-[150px] lg:top-[190px] left-0 z-[-1]">
-        <div className="z-[-1] w-1/2 h-[200px] md:h-[300px] lg:h-[400px] mx-auto bg-gradient-radial from-mint to-transparent to-70% opacity-15" />
-      </div>
-      <div className="text-xl sm:text-3xl md:text-4xl lg:text-[3.5rem] font-[300] px-4">
-        <h1 className="mx-auto max-w-[1200px] text-center mb-1 sm:mb-3 lg:mb-7">
-          <span className="mx-auto max-w-[1200px] text-transparent bg-clip-text bg-gradient-to-r from-neutral-400 via-neutral-200 to-neutral-400 text-center">
+      <div className="relative text-xl sm:text-3xl md:text-4xl lg:text-[3.5rem] font-[300] px-4">
+        <h1 className="mx-auto md:max-w-[800px] lg:max-w-[1200px] text-center mb-1 sm:mb-3 lg:mb-7">
+          <span className="mx-auto text-white text-center leading-tight">
             Accelerating Verifiable Decentralized Computing
           </span>
         </h1>
+        <div className="absolute w-full h-full top-0 left-0 z-[1] px-4 bg-gradient-radial from-transparent to-black from-20% opacity-30" />
       </div>
       <p className="max-w-[800px] mx-auto py-6 lg:py-12 px-4 text-center text-sm sm:text-xl md:text-2xl font-[200] md:leading-normal text-smoke">
-        Researching cutting-edge computation technology in blockchain with hardware, 
-        including Zero-Knowledge Proof, and AI.
+        Researching cutting-edge computation technology in blockchain with
+        hardware, including Zero-Knowledge Proof, and AI.
       </p>
       <div className="relative max-w-[1200px] w-full px-10">
         <div className="absolute w-full h-full top-[0] left-[0] z-[10] px-10">

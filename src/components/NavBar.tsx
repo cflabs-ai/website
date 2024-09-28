@@ -8,8 +8,8 @@ import SocialEmail from "./svg/SocialEmail";
 export const navItems = [
   "Home",
   "About",
-  "Vision",
-  "Team",
+  // "Vision",
+  // "Team",
   // "Partners",
   "Contact",
 ];

@@ -1,6 +1,9 @@
 export default function HeroImage() {
   return (
-    <div className="h-full w-full flex items-center">
+    <div className="relative h-full w-full flex items-center">
+      <div className="absolute w-full h-full top-[-10%] left-0 z-[-1]">
+        <div className="z-[-1] w-1/2 h-full mx-auto bg-gradient-radial from-mint to-transparent to-80% opacity-20" />
+      </div>
       <svg width="100%" viewBox="0 0 1004 240" fill="none">
         <path
           d="M515.34 132.58H476.74C462.246 132.58 450.5 120.834 450.5 106.34V67.74C450.5 53.2461 462.246 41.5 476.74 41.5H515.34C529.834 41.5 541.58 53.2461 541.58 67.74V106.34C541.58 120.824 529.834 132.58 515.34 132.58Z"
