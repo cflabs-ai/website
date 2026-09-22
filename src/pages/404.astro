@@ -15,7 +15,7 @@ import FrameStrip from '../components/FrameStrip.astro';
       cflabs.ai in September 2026 — the research archive and the ASIC pages are all still
       here, under new addresses.
     </p>
-    <FrameStrip count={24} on={0} class="strip404" label="" />
+    <FrameStrip count={16} class="strip404" label="" />
     <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:26px">
       <a class="btn btn--primary" href="/">Home</a>
       <a class="btn btn--ghost" href="/video-ai/">Video AI</a>
@@ -26,5 +26,5 @@ import FrameStrip from '../components/FrameStrip.astro';
 </Base>
 
 <style>
-  .strip404 { margin-top: 26px; max-width: 460px; }
+  :global(.strip404) { margin-top: 26px; max-width: 380px; }
 </style>

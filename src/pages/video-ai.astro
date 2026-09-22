@@ -72,7 +72,6 @@ import { CAPABILITIES, STUDIO, PACKAGES, PRICING_AS_OF, FPS } from '../data/phos
 
     <FrameStrip
       count={FPS}
-      on={FPS}
       class="pricestrip"
       label={`One second = ${FPS} frames. The platform prices per frame; the per-second figures below are that price multiplied by ${FPS}.`}
     />
@@ -184,6 +183,6 @@ import { CAPABILITIES, STUDIO, PACKAGES, PRICING_AS_OF, FPS } from '../data/phos
 </Base>
 
 <style>
-  .pricestrip { margin-top: 22px; max-width: 640px; }
+  :global(.pricestrip) { margin-top: 22px; max-width: 520px; }
   .card h3, .card h4 { color: var(--ink); }
 </style>

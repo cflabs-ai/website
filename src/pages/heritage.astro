@@ -20,8 +20,7 @@ import zk from '../data/zk-research.json';
       site. It is simply no longer where most of our engineering goes.
     </p>
     <FrameStrip
-      count={16}
-      on={11}
+      count={11}
       violet={true}
       class="hstrip"
       label={`${zk.length} published papers from that programme, all readable here.`}
@@ -128,7 +127,7 @@ import zk from '../data/zk-research.json';
 </Base>
 
 <style>
-  .hstrip { margin-top: 26px; max-width: 460px; }
+  :global(.hstrip) { margin-top: 26px; max-width: 380px; }
   .ctaz {
     display: flex; align-items: center; justify-content: space-between; gap: 26px; flex-wrap: wrap;
     border: 1px solid var(--line);

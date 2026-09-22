@@ -47,7 +47,7 @@ const fmt = (d: string) =>
       <p class="lede">
         For four years that meant zero-knowledge proofs and the ASICs that run them.
         Today it means video. <strong>Phosor</strong>, our generation platform, renders a
-        second of 480p video for half a US cent — text to video, image to video, lip-sync,
+        second of 720p video for one US cent — text to video, image to video, lip-sync,
         motion transfer, your own LoRAs, and an API with metered billing behind all of it.
       </p>
 
@@ -59,10 +59,9 @@ const fmt = (d: string) =>
       </div>
 
       <FrameStrip
-        count={24}
-        on={16}
+        count={16}
         class="hero__strip"
-        label="16 frames = one second of generated video. At 480p turbo, that second costs $0.005."
+        label="16 frames = one second of generated video. At 720p turbo, that second costs $0.010."
       />
     </div>
   </section>
@@ -70,7 +69,7 @@ const fmt = (d: string) =>
   <!-- ================= the numbers ================= -->
   <section class="wrap section--tight">
     <div class="stats">
-      <div class="stat"><b>$0.005</b><span>per second, 480p</span></div>
+      <div class="stat"><b>$0.010</b><span>per second, 720p</span></div>
       <div class="stat"><b>1080p</b><span>resolution ceiling</span></div>
       <div class="stat"><b>11</b><span>model capabilities</span></div>
       <div class="stat"><b>$0.003</b><span>per LoRA train step</span></div>
@@ -85,19 +84,13 @@ const fmt = (d: string) =>
 
   <!-- ================= two lines of work ================= -->
   <section class="wrap section rule-top">
-    <p class="eyebrow">Two lines of work</p>
-    <h2 style="margin-top:10px">One problem, two decades of hardware.</h2>
-    <p class="lede" style="margin-top:14px">
-      Proof generation and video generation are the same engineering problem wearing
-      different clothes: an enormous arithmetic workload, a hard latency budget, and a
-      cost per unit of output that decides whether anyone can afford to use it.
-    </p>
+    <p class="eyebrow">What we do</p>
+    <h2 style="margin-top:10px">Two lines of work.</h2>
 
     <div class="grid grid--2" style="margin-top:32px">
       <article class="line line--video">
         <div class="line__head">
           <span class="tag tag--video">Live business</span>
-          <FrameStrip count={16} on={16} thin={true} label="" />
         </div>
         <h3>Video AI</h3>
         <p>
@@ -119,7 +112,6 @@ const fmt = (d: string) =>
       <article class="line line--zk">
         <div class="line__head">
           <span class="tag tag--zk">In service</span>
-          <FrameStrip count={16} on={11} thin={true} violet={true} label="" />
         </div>
         <h3>Verifiable computing</h3>
         <p>
@@ -200,7 +192,7 @@ const fmt = (d: string) =>
   .hero__in { display: flex; flex-direction: column; gap: 20px; }
   .hero h1 { margin-top: 6px; }
   .hero__cta { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 4px; }
-  .hero__strip { margin-top: 18px; max-width: 620px; }
+  :global(.hero__strip) { margin-top: 18px; max-width: 520px; }
 
   .sechead { display: flex; align-items: flex-end; justify-content: space-between; gap: 18px; flex-wrap: wrap; }
 
@@ -214,7 +206,6 @@ const fmt = (d: string) =>
   .line--video { border-top: 3px solid var(--mint); }
   .line--zk { border-top: 3px solid var(--violet); }
   .line__head { display: flex; align-items: center; gap: 16px; }
-  .line__head :global(.fs-wrap) { flex: 1; max-width: 160px; }
   .line p { color: var(--ink-2); }
   .line__links { display: flex; gap: 20px; flex-wrap: wrap; margin-top: auto; padding-top: 6px; font-weight: 600; font-size: 15px; }
 
