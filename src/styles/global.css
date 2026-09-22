@@ -325,8 +325,19 @@ td.n, th.n { font-family: var(--f-mono); font-variant-numeric: tabular-nums; whi
 }
 .skip:focus { left: 0; }
 
-.logos { display: flex; flex-wrap: wrap; align-items: center; gap: 14px 34px; }
-.logos img { height: 26px; width: auto; opacity: .82; }
+/* Partner marks are transparent white wordmarks (the source PNGs' decorative
+   pill has been removed). Heights are set per lockup rather than uniformly, so
+   the two-line RISC Zero mark carries the same visual weight as the one-line ones. */
+.logos { display: flex; flex-wrap: wrap; align-items: center; gap: 22px 48px; }
+.logos img { height: 30px; width: auto; opacity: .9; }
+.logos img[src*="risczero"] { height: 38px; }   /* two-line lockup */
+.logos img[src*="succinct"] { height: 34px; }   /* small x-height in its bbox */
+@media (max-width: 520px) {
+  .logos { gap: 18px 30px; }
+  .logos img { height: 24px; }
+  .logos img[src*="risczero"] { height: 31px; }
+  .logos img[src*="succinct"] { height: 27px; }
+}
 
 /* The CFLabs mark and the partner logos are white-on-transparent artwork.
    On a light ground they need their lightness flipped, or they vanish. */

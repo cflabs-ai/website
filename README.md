@@ -65,3 +65,13 @@ HTML is served `Cache-Control: no-cache` deliberately. The old WordPress site se
 heuristic freshness (commonly 10% of the age = ~5 weeks) and kept serving the old
 homepage from disk after the migration. `no-cache` means revalidate every time; with
 ETags that is a 304 and costs nothing.
+
+### Partner logos
+
+`public/img/logo_*.png` are transparent white wordmarks. The originals, as taken from the
+old WordPress site, sit in `_assets-src/` and have a decorative dark pill baked into the
+image — at any size above about 26px that pill is visible and reads as a button. They were
+lifted off it with a soft luminance threshold (the histogram is cleanly bimodal: pill
+pixels top out near L=80, glyphs sit at L=240), then cropped to their bounding box.
+Heights are set per lockup in `global.css`, not uniformly, so the two-line RISC Zero mark
+carries the same visual weight as the one-line ones.
