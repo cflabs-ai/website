@@ -44,3 +44,24 @@ Certificates are issued and renewed by `acme.sh` on that host (daily cron), inst
 `/etc/nginx/certs/cflabs.ai/`, with `sudo systemctl reload nginx` as the reload hook.
 The ACME webroot is `/var/www/cflabs.ai/.well-known/acme-challenge`, which `deploy.sh`
 excludes from `--delete`.
+
+## Server config
+
+`nginx/cflabs.ai.conf` is the live vhost, kept here so it is version-controlled.
+To apply a change:
+
+```bash
+scp nginx/cflabs.ai.conf dt-remote:/tmp/
+ssh dt-remote 'sudo cp /tmp/cflabs.ai.conf /etc/nginx/sites-available/cflabs.ai \
+  && sudo nginx -t && sudo systemctl reload nginx'
+```
+
+Cache policy is a `map` at the top of that file rather than per-location `add_header`,
+because an `add_header` inside a `location` **replaces** every inherited `add_header` —
+which would silently drop the security headers on those paths.
+
+HTML is served `Cache-Control: no-cache` deliberately. The old WordPress site sent no
+`Cache-Control` at all with a `Last-Modified` a year in the past, so browsers applied
+heuristic freshness (commonly 10% of the age = ~5 weeks) and kept serving the old
+homepage from disk after the migration. `no-cache` means revalidate every time; with
+ETags that is a 304 and costs nothing.
