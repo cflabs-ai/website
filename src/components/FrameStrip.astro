@@ -1,0 +1,40 @@
+---
+/**
+ * A row of cells standing for video frames — the site's one structural device.
+ * `on` says how many of the `count` cells are filled, which is always used to
+ * encode something real (frames in a second, articles in a track), never decoration.
+ */
+export interface Props {
+  count?: number;
+  on?: number;
+  thin?: boolean;
+  violet?: boolean;
+  label?: string;
+  class?: string;
+}
+const { count = 24, on = 16, thin = false, violet = false, label, class: cls = '' } = Astro.props;
+const cells = Array.from({ length: count }, (_, i) => i);
+---
+<div class={`fs-wrap ${cls}`}>
+  <div
+    class={`framestrip${thin ? ' framestrip--thin' : ''}${violet ? ' framestrip--violet' : ''}`}
+    role="img"
+    aria-label={label ?? `${on} of ${count} frames`}
+  >
+    {cells.map((i) => (
+      <i class={i < on ? 'on' : i < on + 3 ? 'dim' : ''}></i>
+    ))}
+  </div>
+  {label && <p class="fs-label">{label}</p>}
+</div>
+
+<style>
+  .fs-wrap { display: flex; flex-direction: column; gap: 8px; }
+  .fs-label {
+    font-family: var(--f-mono);
+    font-size: 11.5px;
+    letter-spacing: .06em;
+    color: var(--muted);
+    margin: 0;
+  }
+</style>

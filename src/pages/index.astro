@@ -1,0 +1,240 @@
+---
+import Base from '../layouts/Base.astro';
+import FrameStrip from '../components/FrameStrip.astro';
+import zk from '../data/zk-research.json';
+import { getCollection } from 'astro:content';
+
+const notes = (await getCollection('notes')).sort(
+  (a, b) => +new Date(b.data.date) - +new Date(a.data.date)
+);
+
+const latest = [
+  ...notes.map((n) => ({
+    title: n.data.title,
+    href: `/research/video/${n.id}/`,
+    date: n.data.date,
+    topic: n.data.topic,
+    track: 'video' as const,
+    blurb: n.data.blurb,
+  })),
+  ...zk.map((a) => ({
+    title: a.title,
+    href: `/research/${a.slug}/`,
+    date: a.date,
+    topic: a.topic,
+    track: 'zk' as const,
+    blurb: a.blurb,
+  })),
+]
+  .sort((a, b) => +new Date(b.date) - +new Date(a.date))
+  .slice(0, 6);
+
+const fmt = (d: string) =>
+  new Date(d + 'T00:00:00Z').toLocaleDateString('en-GB', {
+    day: 'numeric', month: 'short', year: 'numeric', timeZone: 'UTC',
+  });
+---
+<Base
+  title="CFLabs — computational infrastructure for AI and blockchain"
+  description="CFLabs makes expensive computation cheap enough to ship. Today that means video generation — Phosor renders a second of 480p for half a cent. Before that, ZKVM ASICs and proof-system acceleration."
+  section="home"
+>
+  <!-- ================= hero ================= -->
+  <section class="hero">
+    <div class="wrap hero__in">
+      <p class="eyebrow">CFLabs · Computational infrastructure</p>
+      <h1>We make expensive computation<br />cheap enough to ship.</h1>
+      <p class="lede">
+        For four years that meant zero-knowledge proofs and the ASICs that run them.
+        Today it means video. <strong>Phosor</strong>, our generation platform, renders a
+        second of 480p video for half a US cent — text to video, image to video, lip-sync,
+        motion transfer, your own LoRAs, and an API with metered billing behind all of it.
+      </p>
+
+      <div class="hero__cta">
+        <a class="btn btn--primary" href="https://phosor.ai/" rel="noopener">
+          Open Phosor <span class="arr">↗</span>
+        </a>
+        <a class="btn btn--ghost" href="/video-ai/">See every model and price</a>
+      </div>
+
+      <FrameStrip
+        count={24}
+        on={16}
+        class="hero__strip"
+        label="16 frames = one second of generated video. At 480p turbo, that second costs $0.005."
+      />
+    </div>
+  </section>
+
+  <!-- ================= the numbers ================= -->
+  <section class="wrap section--tight">
+    <div class="stats">
+      <div class="stat"><b>$0.005</b><span>per second, 480p</span></div>
+      <div class="stat"><b>1080p</b><span>resolution ceiling</span></div>
+      <div class="stat"><b>11</b><span>model capabilities</span></div>
+      <div class="stat"><b>$0.003</b><span>per LoRA train step</span></div>
+      <div class="stat"><b>Pay as you go</b><span>no seat licence</span></div>
+    </div>
+    <p class="tnote" style="margin-top:12px">
+      Published rates, read from the platform's own pricing endpoint on 22 September 2026.
+      Per-second figures are the published per-frame price at 16 fps.
+      <a href="/video-ai/">Full table →</a>
+    </p>
+  </section>
+
+  <!-- ================= two lines of work ================= -->
+  <section class="wrap section rule-top">
+    <p class="eyebrow">Two lines of work</p>
+    <h2 style="margin-top:10px">One problem, two decades of hardware.</h2>
+    <p class="lede" style="margin-top:14px">
+      Proof generation and video generation are the same engineering problem wearing
+      different clothes: an enormous arithmetic workload, a hard latency budget, and a
+      cost per unit of output that decides whether anyone can afford to use it.
+    </p>
+
+    <div class="grid grid--2" style="margin-top:32px">
+      <article class="line line--video">
+        <div class="line__head">
+          <span class="tag tag--video">Live business</span>
+          <FrameStrip count={16} on={16} thin={true} label="" />
+        </div>
+        <h3>Video AI</h3>
+        <p>
+          Open-weight video models — Wan 2.2, LTX, MiniMax H3 — served at metered prices,
+          with LoRA training, e-commerce imaging and a short-drama workflow on top.
+          It runs as <strong>Phosor</strong>, a platform you can sign up for today.
+        </p>
+        <ul class="ticks">
+          <li>Text, image, speech and multi-reference driven generation</li>
+          <li>Bring your own LoRA, or train one on your dataset</li>
+          <li>REST API, API keys, credits, invoices</li>
+        </ul>
+        <p class="line__links">
+          <a href="/video-ai/">What it does →</a>
+          <a href="https://phosor.ai/" rel="noopener">phosor.ai ↗</a>
+        </p>
+      </article>
+
+      <article class="line line--zk">
+        <div class="line__head">
+          <span class="tag tag--zk">In service</span>
+          <FrameStrip count={16} on={11} thin={true} violet={true} label="" />
+        </div>
+        <h3>Verifiable computing</h3>
+        <p>
+          Custom silicon and software co-design for zero-knowledge proving: ZKVM
+          accelerators reaching more than <strong>20x a GPU prover</strong> on the same
+          workload, delivered with partners into production mining hardware.
+        </p>
+        <ul class="ticks">
+          <li>Hardware/software co-design, from the arithmetic up</li>
+          <li>Crypto and ZKP IP libraries shipped in tens of millions of chips</li>
+          <li>Eleven published papers on RISC0, SP1, Binius, Jolt and Aleo</li>
+        </ul>
+        <p class="line__links">
+          <a href="/heritage/">The ASIC work →</a>
+          <a href="/research/#zk">Proof-system research →</a>
+        </p>
+      </article>
+    </div>
+  </section>
+
+  <!-- ================= research ================= -->
+  <section class="wrap section rule-top">
+    <div class="sechead">
+      <div>
+        <p class="eyebrow">Research</p>
+        <h2 style="margin-top:10px">We publish what we find out.</h2>
+      </div>
+      <a class="btn btn--ghost" href="/research/">All {zk.length + notes.length} pieces</a>
+    </div>
+    <p class="lede" style="margin-top:14px">
+      Two tracks, one habit: every number carries a source, and every conclusion says what
+      observation would overturn it.
+    </p>
+
+    <div class="grid grid--3" style="margin-top:30px">
+      {latest.map((a) => (
+        <article class="card card--link">
+          <div class="cardmeta">
+            <span class={a.track === 'video' ? 'tag tag--video' : 'tag tag--zk'}>{a.topic}</span>
+            <time class="mono muted" datetime={a.date}>{fmt(a.date)}</time>
+          </div>
+          <h3><a href={a.href}>{a.title}</a></h3>
+          <p class="muted" style="font-size:14.5px">{a.blurb}</p>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <!-- ================= partners ================= -->
+  <section class="wrap section--tight rule-top">
+    <p class="eyebrow">Partners</p>
+    <div class="logos" style="margin-top:18px">
+      <img src="/img/logo_intchains.png" alt="Intchains Group" width="546" height="111" loading="lazy" />
+      <img src="/img/logo_risczero.png" alt="RISC Zero" width="546" height="111" loading="lazy" />
+      <img src="/img/logo_succinct.png" alt="Succinct" width="546" height="111" loading="lazy" />
+    </div>
+  </section>
+
+  <!-- ================= closing cta ================= -->
+  <section class="wrap section">
+    <div class="cta">
+      <div>
+        <h2>Start with a second of video.</h2>
+        <p class="lede" style="margin-top:10px">
+          No sales call. Sign up, put $10 of credit on the account and generate something.
+          If it is not good enough, you have spent ten dollars finding out.
+        </p>
+      </div>
+      <a class="btn btn--primary" href="https://phosor.ai/" rel="noopener">
+        Open Phosor <span class="arr">↗</span>
+      </a>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .hero { padding-block: clamp(46px, 8vw, 92px) clamp(30px, 4vw, 44px); }
+  .hero__in { display: flex; flex-direction: column; gap: 20px; }
+  .hero h1 { margin-top: 6px; }
+  .hero__cta { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 4px; }
+  .hero__strip { margin-top: 18px; max-width: 620px; }
+
+  .sechead { display: flex; align-items: flex-end; justify-content: space-between; gap: 18px; flex-wrap: wrap; }
+
+  .line {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 26px;
+    display: flex; flex-direction: column; gap: 13px;
+  }
+  .line--video { border-top: 3px solid var(--mint); }
+  .line--zk { border-top: 3px solid var(--violet); }
+  .line__head { display: flex; align-items: center; gap: 16px; }
+  .line__head :global(.fs-wrap) { flex: 1; max-width: 160px; }
+  .line p { color: var(--ink-2); }
+  .line__links { display: flex; gap: 20px; flex-wrap: wrap; margin-top: auto; padding-top: 6px; font-weight: 600; font-size: 15px; }
+
+  .ticks { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 7px; font-size: 15px; color: var(--ink-2); }
+  .ticks li { padding-left: 19px; position: relative; }
+  .ticks li::before {
+    content: ""; position: absolute; left: 0; top: .62em;
+    width: 8px; height: 8px; border-radius: 1px; background: var(--mint-dim);
+  }
+  .line--zk .ticks li::before { background: var(--violet); }
+
+  .cardmeta { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+  .cardmeta time { font-size: 12px; }
+
+  .cta {
+    display: flex; align-items: center; justify-content: space-between; gap: 26px; flex-wrap: wrap;
+    border: 1px solid var(--line);
+    border-left: 3px solid var(--mint);
+    border-radius: var(--radius);
+    background: var(--surface);
+    padding: 30px 32px;
+  }
+</style>

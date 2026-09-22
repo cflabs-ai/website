@@ -1,0 +1,30 @@
+---
+import Base from '../layouts/Base.astro';
+import FrameStrip from '../components/FrameStrip.astro';
+---
+<Base
+  title="Not found — CFLabs"
+  description="That page is not here. Links to the video platform, the research archive and the ASIC work."
+  section="home"
+>
+  <section class="wrap section">
+    <p class="eyebrow">404</p>
+    <h1 style="margin-top:12px;font-size:clamp(28px,4.6vw,44px)">That frame is missing.</h1>
+    <p class="lede" style="margin-top:14px">
+      The page you asked for is not on this site. It may have moved when we rebuilt
+      cflabs.ai in September 2026 — the research archive and the ASIC pages are all still
+      here, under new addresses.
+    </p>
+    <FrameStrip count={24} on={0} class="strip404" label="" />
+    <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:26px">
+      <a class="btn btn--primary" href="/">Home</a>
+      <a class="btn btn--ghost" href="/video-ai/">Video AI</a>
+      <a class="btn btn--ghost" href="/research/">Research</a>
+      <a class="btn btn--ghost" href="/heritage/">Heritage</a>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .strip404 { margin-top: 26px; max-width: 460px; }
+</style>

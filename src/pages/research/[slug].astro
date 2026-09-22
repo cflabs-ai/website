@@ -1,0 +1,83 @@
+---
+import Base from '../../layouts/Base.astro';
+import zk from '../../data/zk-research.json';
+
+export function getStaticPaths() {
+  return zk.map((a, i) => ({
+    params: { slug: a.slug },
+    props: { article: a, prev: zk[i + 1] ?? null, next: zk[i - 1] ?? null },
+  }));
+}
+
+const { article, prev, next } = Astro.props;
+
+const fmt = (d: string) =>
+  new Date(d + 'T00:00:00Z').toLocaleDateString('en-GB', {
+    day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC',
+  });
+---
+<Base
+  title={`${article.title} — CFLabs Research`}
+  description={article.blurb}
+  section="research"
+  ogType="article"
+>
+  <article class="wrap art">
+    <nav class="crumb">
+      <a href="/research/">Research</a>
+      <span class="muted">/</span>
+      <a href="/research/#zk">Verifiable computing</a>
+    </nav>
+
+    <header class="art__head">
+      <div class="art__meta">
+        <span class="tag tag--zk">{article.topic}</span>
+        <time class="mono muted" datetime={article.date}>{fmt(article.date)}</time>
+        <span class="mono muted">{article.words.toLocaleString('en-GB')} words</span>
+      </div>
+      <h1>{article.title}</h1>
+      <p class="lede">{article.blurb}</p>
+    </header>
+
+    <div class="prose" set:html={article.html} />
+
+    <footer class="art__foot">
+      <p class="muted" style="font-size:14.5px">
+        Originally published on
+        <a href={article.medium} rel="noopener">Medium ↗</a>.
+        This is the full text, hosted on cflabs.ai with its figures.
+      </p>
+      <div class="art__nav">
+        {prev && (
+          <a class="art__navlink" href={`/research/${prev.slug}/`}>
+            <span class="mono muted">← Older</span>
+            <span>{prev.title}</span>
+          </a>
+        )}
+        {next && (
+          <a class="art__navlink art__navlink--next" href={`/research/${next.slug}/`}>
+            <span class="mono muted">Newer →</span>
+            <span>{next.title}</span>
+          </a>
+        )}
+      </div>
+    </footer>
+  </article>
+</Base>
+
+<style>
+  .art { padding-block: 34px 60px; display: flex; flex-direction: column; gap: 26px; }
+  .crumb { display: flex; gap: 8px; font-size: 13.5px; font-family: var(--f-mono); }
+  .art__head { display: flex; flex-direction: column; gap: 14px; max-width: 74ch; }
+  .art__head h1 { font-size: clamp(28px, 4.4vw, 44px); }
+  .art__meta { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; font-size: 12.5px; }
+  .art__foot { border-top: 1px solid var(--line); padding-top: 22px; display: flex; flex-direction: column; gap: 24px; }
+  .art__nav { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 14px; }
+  .art__navlink {
+    border: 1px solid var(--line); border-radius: var(--radius); padding: 15px 17px;
+    display: flex; flex-direction: column; gap: 5px; color: var(--ink); font-size: 15px; font-weight: 500;
+  }
+  .art__navlink:hover { border-color: var(--line-2); text-decoration: none; }
+  .art__navlink span:first-child { font-size: 11px; letter-spacing: .1em; text-transform: uppercase; }
+  .art__navlink--next { text-align: right; align-items: flex-end; }
+</style>

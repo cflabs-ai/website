@@ -1,0 +1,140 @@
+---
+import Base from '../layouts/Base.astro';
+import FrameStrip from '../components/FrameStrip.astro';
+import zk from '../data/zk-research.json';
+---
+<Base
+  title="Heritage — ZKVM and ASIC acceleration — CFLabs"
+  description="CFLabs' verifiable-computing line: custom ASIC and software co-design for zero-knowledge proving, delivered with Intchains into production hardware, and eleven published papers on proof systems."
+  section="heritage"
+>
+  <section class="wrap section--tight">
+    <p class="eyebrow eyebrow--violet">Heritage · Still in service</p>
+    <h1 style="margin-top:12px;font-size:clamp(30px,5vw,50px)">
+      Before video, we made proofs cheap.
+    </h1>
+    <p class="lede" style="margin-top:16px">
+      From 2022 CFLabs built accelerated verifiable computing: ASIC and software co-design
+      for zero-knowledge proof generation, delivered with partners into shipping hardware.
+      That work is not archived — the silicon is in the field and the research is on this
+      site. It is simply no longer where most of our engineering goes.
+    </p>
+    <FrameStrip
+      count={16}
+      on={11}
+      violet={true}
+      class="hstrip"
+      label={`${zk.length} published papers from that programme, all readable here.`}
+    />
+  </section>
+
+  <!-- ============ what it was ============ -->
+  <section class="wrap section rule-top">
+    <p class="eyebrow">The product</p>
+    <h2 style="margin-top:10px">ZKVM + ASIC, as one system.</h2>
+    <p class="lede" style="margin-top:14px">
+      A zero-knowledge virtual machine proves that a program ran correctly. Doing that
+      honestly costs an enormous amount of arithmetic — which is exactly the kind of
+      workload that stops belonging on a general-purpose processor.
+      Feed a program to a ZKVM ASIC and the proof comes back with
+      <strong>more than 20x the throughput of a GPU prover</strong> at a fraction of the
+      energy.
+    </p>
+
+    <div class="grid grid--3" style="margin-top:30px">
+      <div class="card">
+        <h3>Software and hardware co-design</h3>
+        <p class="muted" style="font-size:15px">
+          Compute and memory requirements evaluated together, then the system designed
+          around the result — rather than a chip designed first and an algorithm bent to
+          fit it.
+        </p>
+      </div>
+      <div class="card">
+        <h3>Crypto and ZKP IP libraries</h3>
+        <p class="muted" style="font-size:15px">
+          Field arithmetic, hashing and proof-system primitives already designed and
+          delivered in tens of millions of shipped chips.
+        </p>
+      </div>
+      <div class="card">
+        <h3>A manufacturing supply chain</h3>
+        <p class="muted" style="font-size:15px">
+          Through Intchains Group, a route from design to volume production that a
+          research team on its own does not have.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ case ============ -->
+  <section class="wrap section rule-top">
+    <p class="eyebrow">Case</p>
+    <h2 style="margin-top:10px">The Aleo ZK ASIC miner.</h2>
+    <p class="lede" style="margin-top:14px">
+      Aleo is a layer-1 blockchain that uses zero-knowledge proofs for transaction privacy
+      and scale. Its proof workload is heavy enough that general-purpose hardware sets the
+      ceiling on the whole network. Purpose-built ASIC miners moved that ceiling — we took
+      the resulting hardware apart in public and wrote down how it works.
+    </p>
+    <p style="margin-top:20px">
+      <a class="btn btn--ghost" href="/research/advanced-zk-hardware-acceleration-the-technology-behind-aleo-asic-miner/">
+        Read the teardown
+      </a>
+    </p>
+  </section>
+
+  <!-- ============ where it applies ============ -->
+  <section class="wrap section rule-top">
+    <p class="eyebrow">Where verifiable computing matters</p>
+    <h2 style="margin-top:10px">Three problems it actually solves.</h2>
+    <div class="grid grid--3" style="margin-top:28px">
+      <div class="card">
+        <h3>Privacy and scale on chains</h3>
+        <p class="muted" style="font-size:15px">
+          Private transactions, and rollups that batch work off-chain and settle with a
+          succinct proof.
+        </p>
+      </div>
+      <div class="card">
+        <h3>Proving a fact without showing it</h3>
+        <p class="muted" style="font-size:15px">
+          Demonstrating eligibility, compliance or identity attributes without handing over
+          the underlying records.
+        </p>
+      </div>
+      <div class="card">
+        <h3>Verifiable AI</h3>
+        <p class="muted" style="font-size:15px">
+          Proving a model actually ran, and ran on the inputs claimed — optionally without
+          revealing weights or inputs. The line where this heritage meets the video work.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap section rule-top">
+    <div class="ctaz">
+      <div>
+        <h2>The research is all here.</h2>
+        <p class="lede" style="margin-top:10px">
+          {zk.length} papers on RISC0, SP1, Binius, Jolt, Labrador, Aleo's Varuna, prover
+          networks and field arithmetic — full text, with figures.
+        </p>
+      </div>
+      <a class="btn btn--ghost" href="/research/#zk">Read the papers</a>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .hstrip { margin-top: 26px; max-width: 460px; }
+  .ctaz {
+    display: flex; align-items: center; justify-content: space-between; gap: 26px; flex-wrap: wrap;
+    border: 1px solid var(--line);
+    border-left: 3px solid var(--violet);
+    border-radius: var(--radius);
+    background: var(--surface);
+    padding: 30px 32px;
+  }
+</style>

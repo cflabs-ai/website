@@ -1,0 +1,126 @@
+---
+import Base from '../../layouts/Base.astro';
+import zk from '../../data/zk-research.json';
+import { getCollection } from 'astro:content';
+
+const notes = (await getCollection('notes')).sort(
+  (a, b) => +new Date(b.data.date) - +new Date(a.data.date)
+);
+
+const fmt = (d: string) =>
+  new Date(d + 'T00:00:00Z').toLocaleDateString('en-GB', {
+    day: 'numeric', month: 'short', year: 'numeric', timeZone: 'UTC',
+  });
+
+const words = zk.reduce((n, a) => n + a.words, 0);
+---
+<Base
+  title="Research — CFLabs"
+  description="Two tracks of published research: video generation post-training and model landscape, and zero-knowledge proof systems from RISC0 and SP1 to Binius, Jolt and Aleo."
+  section="research"
+>
+  <section class="wrap section--tight">
+    <p class="eyebrow">Research</p>
+    <h1 style="margin-top:12px;font-size:clamp(30px,5vw,50px)">
+      We publish what we find out.
+    </h1>
+    <p class="lede" style="margin-top:16px">
+      Two tracks, one habit. Every number carries a source you can open, and every
+      conclusion says what observation would overturn it. Where we have been wrong before,
+      the correction stays on the page.
+    </p>
+    <div class="trackjump">
+      <a href="#video" class="tag tag--video">Video AI · {notes.length}</a>
+      <a href="#zk" class="tag tag--zk">Verifiable computing · {zk.length}</a>
+    </div>
+  </section>
+
+  <!-- ================= video track ================= -->
+  <section class="wrap section rule-top" id="video">
+    <div class="trackhead">
+      <div>
+        <p class="eyebrow eyebrow--mint">Track one</p>
+        <h2 style="margin-top:8px">Video generation</h2>
+        <p class="measure muted" style="margin-top:10px">
+          Where open-weight video models stand against the closed frontier, what closes the
+          gap, and what it costs. Working notes, source lists and confidence tags live in
+          the open at
+          <a href="https://github.com/aoraki-labs-ai/Awesome-Video-AI-Research" rel="noopener">Awesome-Video-AI-Research ↗</a>.
+        </p>
+      </div>
+    </div>
+
+    <ol class="list" style="margin-top:28px">
+      {notes.map((n) => (
+        <li class="row row--video">
+          <div class="row__meta">
+            <time class="mono" datetime={n.data.date}>{fmt(n.data.date)}</time>
+            <span class="tag tag--video">{n.data.topic}</span>
+          </div>
+          <div class="row__body">
+            <h3><a href={`/research/video/${n.id}/`}>{n.data.title}</a></h3>
+            <p class="muted">{n.data.blurb}</p>
+          </div>
+        </li>
+      ))}
+    </ol>
+  </section>
+
+  <!-- ================= zk track ================= -->
+  <section class="wrap section rule-top" id="zk">
+    <div class="trackhead">
+      <div>
+        <p class="eyebrow eyebrow--violet">Track two</p>
+        <h2 style="margin-top:8px">Verifiable computing</h2>
+        <p class="measure muted" style="margin-top:10px">
+          {zk.length} papers, {words.toLocaleString('en-GB')} words, published between
+          October 2024 and September 2025 while we were building ZKVM accelerators: proof
+          systems, finite-field arithmetic, zkVM internals and the hardware underneath.
+          Every one was also published on Medium; these are the full texts, hosted here.
+        </p>
+      </div>
+    </div>
+
+    <ol class="list" style="margin-top:28px">
+      {zk.map((a) => (
+        <li class="row row--zk">
+          <div class="row__meta">
+            <time class="mono" datetime={a.date}>{fmt(a.date)}</time>
+            <span class="tag tag--zk">{a.topic}</span>
+          </div>
+          <div class="row__body">
+            <h3><a href={`/research/${a.slug}/`}>{a.title}</a></h3>
+            <p class="muted">{a.blurb}</p>
+            <p class="mono muted" style="font-size:12px">{a.words.toLocaleString('en-GB')} words</p>
+          </div>
+        </li>
+      ))}
+    </ol>
+  </section>
+</Base>
+
+<style>
+  .trackjump { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 22px; }
+  .trackjump a:hover { text-decoration: none; border-color: currentColor; }
+
+  .trackhead { display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
+
+  .list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; }
+  .row {
+    display: grid;
+    grid-template-columns: 178px 1fr;
+    gap: 22px;
+    padding-block: 22px;
+    border-top: 1px solid var(--line);
+  }
+  .row:last-child { border-bottom: 1px solid var(--line); }
+  .row__meta { display: flex; flex-direction: column; gap: 9px; align-items: flex-start; }
+  .row__meta time { font-size: 12.5px; color: var(--muted); }
+  .row__body { display: flex; flex-direction: column; gap: 7px; }
+  .row__body h3 a { color: var(--ink); }
+  .row__body p { font-size: 15px; }
+  @media (max-width: 640px) {
+    .row { grid-template-columns: 1fr; gap: 10px; }
+    .row__meta { flex-direction: row; align-items: center; gap: 12px; }
+  }
+</style>

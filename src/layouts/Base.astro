@@ -1,0 +1,119 @@
+---
+import '../styles/global.css';
+
+export interface Props {
+  title: string;
+  description: string;
+  /** which top-level nav item to mark as current */
+  section?: 'home' | 'video' | 'research' | 'heritage' | 'company';
+  /** og:type override */
+  ogType?: string;
+}
+
+const { title, description, section = 'home', ogType = 'website' } = Astro.props;
+const canonical = new URL(Astro.url.pathname, Astro.site).href;
+const year = new Date().getFullYear();
+
+const nav = [
+  { href: '/video-ai/', label: 'Video AI', key: 'video' },
+  { href: '/research/', label: 'Research', key: 'research' },
+  { href: '/heritage/', label: 'Heritage', key: 'heritage' },
+  { href: '/company/', label: 'Company', key: 'company' },
+];
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <link rel="icon" href="/img/favicon-32x32-1.png" sizes="32x32" />
+    <meta name="theme-color" content="#080C10" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#F7F9F8" media="(prefers-color-scheme: light)" />
+
+    <meta property="og:type" content={ogType} />
+    <meta property="og:site_name" content="CFLabs" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@CFrontier_Labs" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap"
+    />
+    <slot name="head" />
+  </head>
+  <body>
+    <a class="skip" href="#main">Skip to content</a>
+
+    <header class="nav">
+      <div class="wrap nav__in">
+        <a class="nav__logo" href="/" aria-label="CFLabs — home">
+          <img src="/img/cf_logo.png" alt="CFLabs" width="168" height="40" />
+        </a>
+        <nav class="nav__links" aria-label="Main">
+          {nav.map((n) => (
+            <a href={n.href} aria-current={section === n.key ? 'page' : undefined}>{n.label}</a>
+          ))}
+          <a
+            class="btn btn--primary"
+            style="margin-left:8px"
+            href="https://phosor.ai/"
+            rel="noopener"
+          >Open Phosor <span class="arr">↗</span></a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="main">
+      <slot />
+    </main>
+
+    <footer class="foot">
+      <div class="wrap">
+        <div class="foot__grid">
+          <div>
+            <h4>Video AI</h4>
+            <ul>
+              <li><a href="/video-ai/">Capabilities &amp; pricing</a></li>
+              <li><a href="https://phosor.ai/" rel="noopener">Phosor platform ↗</a></li>
+              <li><a href="/research/#video">Video AI research</a></li>
+            </ul>
+          </div>
+          <div>
+            <h4>Verifiable computing</h4>
+            <ul>
+              <li><a href="/heritage/">ZKVM + ASIC</a></li>
+              <li><a href="/research/#zk">Proof-system research</a></li>
+            </ul>
+          </div>
+          <div>
+            <h4>Company</h4>
+            <ul>
+              <li><a href="/company/">About &amp; partners</a></li>
+              <li><a href="mailto:hello@cflabs.ai">hello@cflabs.ai</a></li>
+            </ul>
+          </div>
+          <div>
+            <h4>Elsewhere</h4>
+            <ul>
+              <li><a href="https://x.com/CFrontier_Labs" rel="noopener me">X / Twitter ↗</a></li>
+              <li><a href="https://medium.com/@CFrontier_Labs" rel="noopener me">Medium ↗</a></li>
+              <li><a href="https://github.com/aoraki-labs-ai" rel="noopener me">GitHub ↗</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="foot__base">
+          <span>© {year} CFLabs</span>
+          <span>Computational infrastructure for AI and blockchain</span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
