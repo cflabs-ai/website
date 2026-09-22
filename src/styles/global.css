@@ -171,6 +171,10 @@ hr { border: 0; border-top: 1px solid var(--line); margin: 0; }
 .framestrip i.dim { background: color-mix(in srgb, var(--mint) 26%, transparent); border-color: color-mix(in srgb, var(--mint) 46%, transparent); }
 .framestrip--thin { height: 12px; gap: 2px; }
 .framestrip--violet i.on { background: var(--violet); border-color: var(--violet); }
+.framestrip--violet i.dim {
+  background: color-mix(in srgb, var(--violet) 26%, transparent);
+  border-color: color-mix(in srgb, var(--violet) 46%, transparent);
+}
 
 /* ---------- navigation ------------------------------------------------ */
 
