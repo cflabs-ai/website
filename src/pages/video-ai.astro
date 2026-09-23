@@ -1,82 +1,33 @@
 ---
 import Base from '../layouts/Base.astro';
-import FrameStrip from '../components/FrameStrip.astro';
 import { CAPABILITIES, STUDIO, PACKAGES, PRICING_AS_OF, FPS } from '../data/phosor.ts';
 ---
 <Base
   title="Video AI — CFLabs"
-  description="Every model, capability and published price on Phosor: text to video, image to video, lip-sync, motion transfer, multi-reference generation, LoRA training and e-commerce imaging."
+  description="Every model, capability and published price: text to video, image to video, lip-sync, motion transfer, multi-reference generation, LoRA training, e-commerce imaging and speech synthesis."
   section="video"
 >
-  <section class="wrap section--tight">
-    <p class="eyebrow eyebrow--mint">Video AI · The live business</p>
-    <h1 style="margin-top:12px;font-size:clamp(30px,5vw,50px)">
-      Open-weight video models,<br />served by the second.
-    </h1>
-    <p class="lede" style="margin-top:16px">
-      We run the models, the GPUs and the billing. You get an account, an API key and a
-      price per second that does not change when you scale. The platform is called
-      <strong>Phosor</strong>; everything on this page is live there today.
+  <section class="wrap hero">
+    <p class="kicker">Video AI</p>
+    <h1>Every model,<br />every price.</h1>
+    <p class="lede">
+      One account, one API key, one rate per second that does not change when you scale.
+      Everything below runs today on Phosor.
     </p>
-    <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:22px">
+    <div class="btnrow">
       <a class="btn btn--primary" href="https://phosor.ai/" rel="noopener">Open Phosor <span class="arr">↗</span></a>
-      <a class="btn btn--ghost" href="#pricing">Jump to the price table</a>
+      <a class="btn btn--ghost" href="#pricing">Go to the price table</a>
     </div>
   </section>
 
-  <!-- ============ what you can make ============ -->
-  <section class="wrap section rule-top">
-    <p class="eyebrow">What you can make</p>
-    <h2 style="margin-top:10px">Four jobs people actually bring us.</h2>
+  <section class="wrap section" id="pricing">
+    <h2>Generation</h2>
+    <p class="body" style="margin-top:18px">
+      Video is billed per frame at {FPS} frames a second; the per-second figures here are
+      the published per-frame price multiplied out.
+    </p>
 
-    <div class="grid grid--2" style="margin-top:28px">
-      <article class="card">
-        <h3>A short film from a prompt or a still</h3>
-        <p class="muted">
-          Text to video and image to video on Wan 2.2, in a standard and a distilled
-          "turbo" variant. Iterate on turbo at a third of the price, then run the locked
-          shot through standard at up to 1080p.
-        </p>
-      </article>
-      <article class="card">
-        <h3>A character who speaks and moves</h3>
-        <p class="muted">
-          Speech-to-video drives lip-sync from an audio track; motion transfer moves your
-          character with a reference performance. Qwen TTS generates the voice if you do
-          not have one.
-        </p>
-      </article>
-      <article class="card">
-        <h3>A product catalogue from one photograph</h3>
-        <p class="muted">
-          Image Studio turns a single product or garment shot into a full set — scene
-          variations, mannequin to model, pose changes, background replacement, 2K or 4K,
-          and text localisation inside the image.
-        </p>
-      </article>
-      <article class="card">
-        <h3>A model that knows your character</h3>
-        <p class="muted">
-          Train a LoRA on your own dataset at $0.003 per step, or import
-          <code>.safetensors</code> you already own from a URL. Several LoRAs can apply to
-          a single request.
-        </p>
-      </article>
-    </div>
-  </section>
-
-  <!-- ============ pricing ============ -->
-  <section class="wrap section rule-top" id="pricing">
-    <p class="eyebrow">Published rates</p>
-    <h2 style="margin-top:10px">Every model and what a second costs.</h2>
-
-    <FrameStrip
-      count={FPS}
-      class="pricestrip"
-      label={`One second = ${FPS} frames. The platform prices per frame; the per-second figures below are that price multiplied by ${FPS}.`}
-    />
-
-    <div class="tablewrap" style="margin-top:22px">
+    <div class="tablewrap" style="margin-top:34px">
       <table>
         <thead>
           <tr>
@@ -90,7 +41,10 @@ import { CAPABILITIES, STUDIO, PACKAGES, PRICING_AS_OF, FPS } from '../data/phos
         <tbody>
           {CAPABILITIES.map((r) => (
             <tr>
-              <td><strong>{r.capability}</strong><br /><span class="muted" style="font-size:13.5px">{r.detail}</span></td>
+              <td>
+                <strong>{r.capability}</strong>
+                <br /><span class="muted" style="font-size:14px">{r.detail}</span>
+              </td>
               <td>{r.model}</td>
               <td class="n">{r.res}</td>
               <td class="n">{r.price}</td>
@@ -100,89 +54,75 @@ import { CAPABILITIES, STUDIO, PACKAGES, PRICING_AS_OF, FPS } from '../data/phos
         </tbody>
       </table>
     </div>
-    <p class="tnote" style="margin-top:12px">
-      Read from the platform's public pricing endpoint on {PRICING_AS_OF}. Generation with a
-      LoRA applied is 1.2x the base rate. Prices change — the endpoint is the source of
-      truth, this table is a copy of it.
+    <p class="tnote" style="margin-top:16px">
+      Read from the platform's public pricing endpoint on {PRICING_AS_OF}. Generation with
+      a LoRA applied is 1.2x the base rate.
     </p>
+  </section>
 
-    <h3 style="margin-top:44px">Image Studio, per job</h3>
-    <div class="tablewrap" style="margin-top:14px">
+  <section class="wrap section rule">
+    <h2>Image Studio</h2>
+    <p class="body" style="margin-top:18px">
+      Commerce imaging, priced per job rather than per second.
+    </p>
+    <div class="tablewrap" style="margin-top:30px">
       <table>
         <thead><tr><th>Job</th><th>What it does</th><th class="n">Price</th></tr></thead>
         <tbody>
           {STUDIO.map((s) => (
-            <tr><td><strong>{s.job}</strong></td><td class="muted">{s.detail}</td><td class="n">{s.price}</td></tr>
+            <tr>
+              <td><strong>{s.job}</strong></td>
+              <td class="muted">{s.detail}</td>
+              <td class="n">{s.price}</td>
+            </tr>
           ))}
         </tbody>
       </table>
     </div>
+  </section>
 
-    <h3 style="margin-top:44px">Credit packages</h3>
-    <div class="grid grid--3" style="margin-top:14px">
+  <section class="wrap section rule">
+    <h2>Credit</h2>
+    <div class="figs" style="margin-top:34px">
       {PACKAGES.map((p) => (
-        <div class="card">
-          <p class="eyebrow">{p.name}</p>
-          <p style="font-family:var(--f-display);font-size:34px;font-weight:700;letter-spacing:-.02em">{p.price}</p>
-          <p class="muted" style="font-size:14.5px">{p.credits} credits · up to {p.concurrency} concurrent jobs</p>
+        <div class="fig">
+          <b>{p.price}</b>
+          <span>{p.name} · {p.credits} credits</span>
+          <span style="text-transform:none;letter-spacing:0;font-size:13px">up to {p.concurrency} concurrent jobs</span>
         </div>
       ))}
     </div>
-    <p class="tnote" style="margin-top:12px">
+    <p class="tnote" style="margin-top:26px">
       10 credits to the US dollar. Auto top-up and invoices are available on the account.
     </p>
   </section>
 
-  <!-- ============ how you integrate ============ -->
-  <section class="wrap section rule-top">
-    <p class="eyebrow">Integration</p>
-    <h2 style="margin-top:10px">It is an API, not a demo.</h2>
-    <div class="grid grid--3" style="margin-top:26px">
-      <div class="card">
-        <h4>Submit and poll</h4>
-        <p class="muted" style="font-size:14.5px">
-          Submit a job, poll its status, fetch the result. History, per-job detail and
-          downloads are all addressable.
-        </p>
-      </div>
-      <div class="card">
-        <h4>Keys and credits</h4>
-        <p class="muted" style="font-size:14.5px">
-          Issue API keys per environment. Balance, charges per job and invoices are
-          readable from the account.
-        </p>
-      </div>
-      <div class="card">
-        <h4>Your own assets</h4>
-        <p class="muted" style="font-size:14.5px">
-          Upload datasets for LoRA training, import LoRA weights from a URL, and keep
-          generated output in platform storage.
-        </p>
-      </div>
+  <section class="wrap section rule">
+    <h2>Integration</h2>
+    <div class="things" style="margin-top:34px">
+      <article class="thing">
+        <h3>Submit and poll</h3>
+        <p>Submit a job, poll its status, fetch the result. History, per-job detail and downloads are all addressable.</p>
+      </article>
+      <article class="thing">
+        <h3>Keys and credit</h3>
+        <p>Issue API keys per environment. Balance, per-job charges and invoices are readable from the account.</p>
+      </article>
+      <article class="thing">
+        <h3>Your own assets</h3>
+        <p>Upload datasets for LoRA training, import LoRA weights from a URL, and keep generated output in platform storage.</p>
+      </article>
     </div>
-    <p style="margin-top:22px">
+    <p style="margin-top:34px">
       <a class="btn btn--primary" href="https://phosor.ai/" rel="noopener">Create an account <span class="arr">↗</span></a>
     </p>
-  </section>
-
-  <!-- ============ why us ============ -->
-  <section class="wrap section rule-top">
-    <p class="eyebrow">Why this team</p>
-    <h2 style="margin-top:10px">We have made an arithmetic workload cheap before.</h2>
-    <p class="lede" style="margin-top:14px">
-      Before video, CFLabs built ASIC and software acceleration for zero-knowledge proving —
-      more than <strong>20x a GPU prover</strong> on the same workload, shipped into
-      production hardware with partners. Serving video models is the same discipline:
-      measure where the cost actually is, and move it.
-    </p>
-    <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:20px">
-      <a class="btn btn--ghost" href="/heritage/">The ASIC work</a>
-      <a class="btn btn--ghost" href="/research/#video">What we have published on video</a>
-    </div>
   </section>
 </Base>
 
 <style>
-  :global(.pricestrip) { margin-top: 22px; max-width: 520px; }
-  .card h3, .card h4 { color: var(--ink); }
+  .hero {
+    padding-block: clamp(56px, 8vw, 112px) clamp(32px, 4vw, 56px);
+    display: flex; flex-direction: column; gap: 26px; align-items: flex-start;
+  }
+  .hero h1 { font-size: clamp(38px, 6.4vw, 66px); max-width: 14ch; }
 </style>

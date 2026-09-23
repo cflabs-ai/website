@@ -21,83 +21,75 @@ const fmt = (d: string) =>
   });
 ---
 <Base
-  title={`${note.data.title} — CFLabs Research`}
+  title={`${note.data.title} — CFLabs`}
   description={note.data.blurb}
   section="research"
   ogType="article"
 >
   <article class="wrap art">
-    <nav class="crumb">
-      <a href="/research/">Research</a>
-      <span class="muted">/</span>
-      <a href="/research/#video">Video AI</a>
-    </nav>
+    <a class="crumb" href="/research/#video">← Research</a>
 
     <header class="art__head">
-      <div class="art__meta">
-        <span class="tag tag--video">{note.data.topic}</span>
-        <time class="mono muted" datetime={note.data.date}>{fmt(note.data.date)}</time>
-        {note.data.updated && <span class="mono muted">updated {fmt(note.data.updated)}</span>}
-      </div>
       <h1>{note.data.title}</h1>
       <p class="lede">{note.data.blurb}</p>
+      <p class="art__meta">
+        <time datetime={note.data.date}>{fmt(note.data.date)}</time>
+        <span>{note.data.topic}</span>
+        {note.data.updated && <span>updated {fmt(note.data.updated)}</span>}
+      </p>
     </header>
 
     <div class="prose"><Content /></div>
 
     <aside class="falsify">
-      <h4>How to prove this wrong</h4>
+      <p class="kicker">How to prove this wrong</p>
       <p>{note.data.falsifier}</p>
     </aside>
 
     <footer class="art__foot">
-      <div class="art__nav">
+      <nav class="art__nav">
         {prev && (
-          <a class="art__navlink" href={`/research/video/${prev.id}/`}>
-            <span class="mono muted">← Older</span>
-            <span>{prev.data.title}</span>
+          <a href={`/research/video/${prev.id}/`}>
+            <span class="tag">Older</span>
+            <span class="art__navtitle">{prev.data.title}</span>
           </a>
         )}
         {next && (
-          <a class="art__navlink art__navlink--next" href={`/research/video/${next.id}/`}>
-            <span class="mono muted">Newer →</span>
-            <span>{next.data.title}</span>
+          <a href={`/research/video/${next.id}/`} class="art__next">
+            <span class="tag">Newer</span>
+            <span class="art__navtitle">{next.data.title}</span>
           </a>
         )}
-      </div>
+      </nav>
     </footer>
   </article>
 </Base>
 
 <style>
-  .art { padding-block: 34px 60px; display: flex; flex-direction: column; gap: 26px; }
-  .crumb { display: flex; gap: 8px; font-size: 13.5px; font-family: var(--f-mono); }
-  .art__head { display: flex; flex-direction: column; gap: 14px; max-width: 74ch; }
-  .art__head h1 { font-size: clamp(28px, 4.4vw, 44px); }
-  .art__meta { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; font-size: 12.5px; }
+  .art { padding-block: 40px 72px; display: flex; flex-direction: column; gap: 34px; }
+  .crumb { font-family: var(--f-mono); font-size: 13px; color: var(--muted); }
+  .crumb:hover { color: var(--accent-ink); text-decoration: none; }
+
+  .art__head { display: flex; flex-direction: column; gap: 20px; }
+  .art__head h1 { font-size: clamp(32px, 4.8vw, 52px); max-width: 20ch; }
+  .art__meta {
+    display: flex; flex-wrap: wrap; gap: 6px 20px;
+    font-family: var(--f-mono); font-size: 12.5px; color: var(--muted);
+  }
 
   .falsify {
-    max-width: 70ch;
-    border: 1px solid var(--line);
-    border-left: 3px solid var(--mint);
-    border-radius: var(--radius);
-    background: var(--surface);
-    padding: 18px 20px;
-    display: flex; flex-direction: column; gap: 7px;
+    max-width: 68ch;
+    border-left: 2px solid var(--accent);
+    padding: 4px 0 4px 22px;
+    display: flex; flex-direction: column; gap: 9px;
   }
-  .falsify h4 {
-    font-family: var(--f-mono); font-size: 11px; letter-spacing: .16em;
-    text-transform: uppercase; color: var(--mint-ink); font-weight: 400;
-  }
-  .falsify p { color: var(--ink-2); font-size: 15.5px; }
+  .falsify p:last-child { color: var(--ink-2); font-size: 16.5px; }
 
-  .art__foot { border-top: 1px solid var(--line); padding-top: 22px; }
-  .art__nav { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 14px; }
-  .art__navlink {
-    border: 1px solid var(--line); border-radius: var(--radius); padding: 15px 17px;
-    display: flex; flex-direction: column; gap: 5px; color: var(--ink); font-size: 15px; font-weight: 500;
-  }
-  .art__navlink:hover { border-color: var(--line-2); text-decoration: none; }
-  .art__navlink span:first-child { font-size: 11px; letter-spacing: .1em; text-transform: uppercase; }
-  .art__navlink--next { text-align: right; align-items: flex-end; }
+  .art__foot { border-top: 1px solid var(--line); padding-top: 26px; }
+  .art__nav { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 24px; }
+  .art__nav a { display: flex; flex-direction: column; gap: 7px; color: var(--ink); }
+  .art__nav a:hover { text-decoration: none; }
+  .art__nav a:hover .art__navtitle { color: var(--accent-ink); }
+  .art__navtitle { font-family: var(--f-display); font-weight: 600; font-size: 18px; letter-spacing: -0.015em; line-height: 1.25; }
+  .art__next { text-align: right; align-items: flex-end; }
 </style>

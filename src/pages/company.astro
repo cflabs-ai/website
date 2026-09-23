@@ -3,86 +3,66 @@ import Base from '../layouts/Base.astro';
 ---
 <Base
   title="Company — CFLabs"
-  description="CFLabs builds computational infrastructure for AI and blockchain, backed by Intchains Group in silicon and Aoraki Labs in AI. Partners, focus and how to reach us."
+  description="CFLabs builds computational infrastructure for AI and blockchain: video generation served by the second, and ASIC acceleration for zero-knowledge proving. Partners, open work and contact."
   section="company"
 >
-  <section class="wrap section--tight">
-    <p class="eyebrow">Company</p>
-    <h1 style="margin-top:12px;font-size:clamp(30px,5vw,50px)">
-      A small team that keeps<br />picking expensive workloads.
-    </h1>
-    <p class="lede" style="margin-top:16px">
-      CFLabs builds computational infrastructure for AI and blockchain. Our people come
-      from semiconductors, cryptography and machine learning, and the thread through every
-      project has been the same: take a workload that costs too much to be useful, and
-      move the cost.
+  <section class="wrap hero">
+    <p class="kicker">Company</p>
+    <h1>Computational infrastructure for AI and blockchain.</h1>
+    <p class="lede">
+      Two things: video generation, run on our own infrastructure and sold by the second,
+      and ASIC acceleration for zero-knowledge proving. Our people come from
+      semiconductors, cryptography and machine learning.
     </p>
   </section>
 
-  <section class="wrap section rule-top">
-    <p class="eyebrow">Ownership</p>
-    <h2 style="margin-top:10px">CFLabs is part of Aoraki Labs.</h2>
-    <p class="lede" style="margin-top:14px">
-      CFLabs is the trading name of <strong>Computation Frontier Labs Pte. Ltd.</strong>
-      <a href="https://aoraki-labs.io/" rel="noopener">Aoraki Labs</a> acquired it, and
-      <a href="https://intchains.com/" rel="noopener">Intchains Group</a> — the ASIC house the
-      verifiable-computing work was built with — is a shareholder. Aoraki Labs builds the next
-      generation of computational infrastructure for AI and blockchain; the video generation
-      research, the Phosor platform and the open research index all sit under it.
-    </p>
-  </section>
-
-  <section class="wrap section rule-top">
-    <p class="eyebrow">Technology partners</p>
-    <div class="logos" style="margin-top:20px">
-      <img src="/img/logo_intchains.png" alt="Intchains Group" width="546" height="111" loading="lazy" />
-      <img src="/img/logo_risczero.png" alt="RISC Zero" width="546" height="111" loading="lazy" />
-      <img src="/img/logo_succinct.png" alt="Succinct" width="546" height="111" loading="lazy" />
+  <section class="wrap section">
+    <h2>Built with</h2>
+    <div class="logos" style="margin-top:30px">
+      <img src="/img/logo_intchains.png" alt="Intchains Group" width="248" height="53" loading="lazy" />
+      <img src="/img/logo_risczero.png" alt="RISC Zero" width="83" height="61" loading="lazy" />
+      <img src="/img/logo_succinct.png" alt="Succinct" width="364" height="98" loading="lazy" />
     </div>
-    <p class="tnote" style="margin-top:20px">
-      Our proof-system work has been built around RISC Zero and Succinct's zkVMs, and our
-      hardware work with Intchains, who are also a shareholder. Details are in the
-      <a href="/research/#zk">research papers</a>.
+    <p class="tnote" style="margin-top:26px">
+      Proof-system work built around RISC Zero and Succinct's zkVMs; silicon with
+      <a href="https://intchains.com/" rel="noopener">Intchains Group</a>. Part of
+      <a href="https://aoraki-labs.io/" rel="noopener">Aoraki Labs</a>.
     </p>
   </section>
 
-  <section class="wrap section rule-top">
-    <p class="eyebrow">Open work</p>
-    <h2 style="margin-top:10px">Some of it is public.</h2>
-    <div class="grid grid--2" style="margin-top:26px">
-      <article class="card">
+  <section class="wrap section rule">
+    <h2>Open work</h2>
+    <div class="things" style="margin-top:34px">
+      <article class="thing">
         <h3>Awesome Video AI Research</h3>
-        <p class="muted">
+        <p>
           A curated index of video AI — architectures, models, datasets, inference
-          optimisation and post-training — with the primary papers linked, plus our own
-          working notes on the gap between open and closed models.
+          optimisation and post-training — with the primary papers linked.
+          <br /><a href="https://github.com/aoraki-labs-ai/Awesome-Video-AI-Research" rel="noopener">On GitHub ↗</a>
         </p>
-        <p><a href="https://github.com/aoraki-labs-ai/Awesome-Video-AI-Research" rel="noopener">On GitHub ↗</a></p>
       </article>
-      <article class="card">
+      <article class="thing">
         <h3>Agent Trust Stack</h3>
-        <p class="muted">
-          A continuously updated, source-linked report on trustworthy privacy and
-          verifiable AI for the agent era. Every checkable number is a record carrying its
-          source, its confidence tier and the observation that would overturn it — a number
-          without a source fails the build.
+        <p>
+          A source-linked report on trustworthy privacy and verifiable AI for the agent
+          era. Every checkable number carries its source, its confidence tier and the
+          observation that would overturn it.
+          <br /><a href="https://github.com/aoraki-labs-ai/agent-trust-stack" rel="noopener">On GitHub ↗</a>
         </p>
-        <p><a href="https://github.com/aoraki-labs-ai/agent-trust-stack" rel="noopener">On GitHub ↗</a></p>
       </article>
     </div>
   </section>
 
-  <section class="wrap section rule-top">
-    <div class="contact">
+  <section class="wrap section rule">
+    <div class="cta">
       <div>
-        <p class="eyebrow">Contact</p>
-        <h2 style="margin-top:10px">Talk to us.</h2>
-        <p class="lede" style="margin-top:10px">
+        <h2>Talk to us.</h2>
+        <p class="lede" style="margin-top:16px">
           Video generation at volume, a custom model, or acceleration work on a proving
-          system — one email gets to the people who would do it.
+          system.
         </p>
       </div>
-      <div class="contact__links">
+      <div class="btnrow">
         <a class="btn btn--primary" href="mailto:hello@cflabs.ai">hello@cflabs.ai</a>
         <a class="btn btn--ghost" href="https://x.com/CFrontier_Labs" rel="noopener">@CFrontier_Labs ↗</a>
       </div>
@@ -91,11 +71,9 @@ import Base from '../layouts/Base.astro';
 </Base>
 
 <style>
-
-  .contact {
-    display: flex; align-items: center; justify-content: space-between; gap: 26px; flex-wrap: wrap;
-    border: 1px solid var(--line); border-left: 3px solid var(--mint);
-    border-radius: var(--radius); background: var(--surface); padding: 30px 32px;
+  .hero {
+    padding-block: clamp(56px, 8vw, 112px) clamp(32px, 4vw, 56px);
+    display: flex; flex-direction: column; gap: 26px; align-items: flex-start;
   }
-  .contact__links { display: flex; gap: 12px; flex-wrap: wrap; }
+  .hero h1 { font-size: clamp(36px, 5.8vw, 60px); max-width: 17ch; }
 </style>

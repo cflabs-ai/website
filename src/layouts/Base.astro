@@ -4,9 +4,7 @@ import '../styles/global.css';
 export interface Props {
   title: string;
   description: string;
-  /** which top-level nav item to mark as current */
-  section?: 'home' | 'video' | 'research' | 'heritage' | 'company';
-  /** og:type override */
+  section?: 'home' | 'video' | 'zk' | 'research' | 'company';
   ogType?: string;
 }
 
@@ -16,8 +14,8 @@ const year = new Date().getFullYear();
 
 const nav = [
   { href: '/video-ai/', label: 'Video AI', key: 'video' },
+  { href: '/zk-acceleration/', label: 'ZK Acceleration', key: 'zk' },
   { href: '/research/', label: 'Research', key: 'research' },
-  { href: '/heritage/', label: 'Heritage', key: 'heritage' },
   { href: '/company/', label: 'Company', key: 'company' },
 ];
 ---
@@ -30,8 +28,8 @@ const nav = [
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
     <link rel="icon" href="/img/favicon-32x32-1.png" sizes="32x32" />
-    <meta name="theme-color" content="#080C10" media="(prefers-color-scheme: dark)" />
-    <meta name="theme-color" content="#F7F9F8" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0A0D10" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#FBFBFA" media="(prefers-color-scheme: light)" />
 
     <meta property="og:type" content={ogType} />
     <meta property="og:site_name" content="CFLabs" />
@@ -45,7 +43,7 @@ const nav = [
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap"
     />
     <slot name="head" />
   </head>
@@ -61,12 +59,9 @@ const nav = [
           {nav.map((n) => (
             <a href={n.href} aria-current={section === n.key ? 'page' : undefined}>{n.label}</a>
           ))}
-          <a
-            class="btn btn--primary"
-            style="margin-left:8px"
-            href="https://phosor.ai/"
-            rel="noopener"
-          >Open Phosor <span class="arr">↗</span></a>
+          <a class="btn btn--primary" style="margin-left:10px" href="https://phosor.ai/" rel="noopener">
+            Open Phosor <span class="arr">↗</span>
+          </a>
         </nav>
       </div>
     </header>
@@ -81,29 +76,29 @@ const nav = [
           <div>
             <h4>Video AI</h4>
             <ul>
-              <li><a href="/video-ai/">Capabilities &amp; pricing</a></li>
+              <li><a href="/video-ai/">Models &amp; pricing</a></li>
               <li><a href="https://phosor.ai/" rel="noopener">Phosor platform ↗</a></li>
-              <li><a href="/research/#video">Video AI research</a></li>
+              <li><a href="/research/#video">Video research</a></li>
             </ul>
           </div>
           <div>
-            <h4>Verifiable computing</h4>
+            <h4>ZK Acceleration</h4>
             <ul>
-              <li><a href="/heritage/">ZKVM + ASIC</a></li>
+              <li><a href="/zk-acceleration/">ZKVM + ASIC</a></li>
               <li><a href="/research/#zk">Proof-system research</a></li>
             </ul>
           </div>
           <div>
             <h4>Company</h4>
             <ul>
-              <li><a href="/company/">About &amp; partners</a></li>
+              <li><a href="/company/">About</a></li>
               <li><a href="mailto:hello@cflabs.ai">hello@cflabs.ai</a></li>
             </ul>
           </div>
           <div>
             <h4>Elsewhere</h4>
             <ul>
-              <li><a href="https://x.com/CFrontier_Labs" rel="noopener me">X / Twitter ↗</a></li>
+              <li><a href="https://x.com/CFrontier_Labs" rel="noopener me">X ↗</a></li>
               <li><a href="https://medium.com/@CFrontier_Labs" rel="noopener me">Medium ↗</a></li>
               <li><a href="https://github.com/aoraki-labs-ai" rel="noopener me">GitHub ↗</a></li>
             </ul>
@@ -111,7 +106,6 @@ const nav = [
         </div>
         <div class="foot__base">
           <span class="foot__entity">© {year} COMPUTATION FRONTIER LABS PTE. LTD.</span>
-          <span>Computational infrastructure for AI and blockchain</span>
         </div>
       </div>
     </footer>

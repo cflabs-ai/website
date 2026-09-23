@@ -1,0 +1,102 @@
+---
+import Base from '../layouts/Base.astro';
+import zk from '../data/zk-research.json';
+---
+<Base
+  title="ZK Acceleration — CFLabs"
+  description="Custom ASIC and software co-design for zero-knowledge proving: more than 20x the throughput of a GPU prover, delivered into production hardware with Intchains."
+  section="zk"
+>
+  <section class="wrap hero">
+    <p class="kicker">ZK Acceleration</p>
+    <h1>Proving, on<br />purpose-built silicon.</h1>
+    <p class="lede">
+      A zero-knowledge virtual machine proves a program ran correctly. Doing it honestly
+      costs an enormous amount of arithmetic — which is exactly the kind of work that stops
+      belonging on a general-purpose processor.
+    </p>
+  </section>
+
+  <section class="wrap section--tight">
+    <div class="figs">
+      <div class="fig"><b>20x</b><span>throughput vs a GPU prover</span></div>
+      <div class="fig"><b>10s of millions</b><span>chips carrying our IP</span></div>
+      <div class="fig"><b>{zk.length}</b><span>published papers</span></div>
+    </div>
+  </section>
+
+  <section class="wrap section">
+    <h2>What we build</h2>
+    <div class="things" style="margin-top:34px">
+      <article class="thing">
+        <h3>Software and hardware, designed together</h3>
+        <p>
+          Compute and memory requirements evaluated as one problem, then the system
+          designed around the answer — rather than a chip designed first and an algorithm
+          bent to fit it.
+        </p>
+      </article>
+      <article class="thing">
+        <h3>Crypto and ZKP IP libraries</h3>
+        <p>
+          Field arithmetic, hashing and proof-system primitives, already designed and
+          delivered in tens of millions of shipped chips.
+        </p>
+      </article>
+      <article class="thing">
+        <h3>A route to volume</h3>
+        <p>
+          Through Intchains Group, a path from design to mass production that a research
+          team does not have on its own.
+        </p>
+      </article>
+    </div>
+  </section>
+
+  <section class="wrap section rule">
+    <h2>Where it is used</h2>
+    <div class="things" style="margin-top:34px">
+      <article class="thing">
+        <h3>Privacy and scale on chains</h3>
+        <p>Private transactions, and rollups that batch work off-chain and settle with a succinct proof.</p>
+      </article>
+      <article class="thing">
+        <h3>Proving a fact without showing it</h3>
+        <p>Demonstrating eligibility, compliance or identity attributes without handing over the underlying records.</p>
+      </article>
+      <article class="thing">
+        <h3>Verifiable AI</h3>
+        <p>Proving a model ran, and ran on the inputs claimed — optionally without revealing weights or inputs.</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="wrap section rule">
+    <h2>The Aleo ZK ASIC miner</h2>
+    <p class="lede" style="margin-top:20px">
+      Aleo's proof workload is heavy enough that general-purpose hardware sets the ceiling
+      on the whole network. Purpose-built miners moved that ceiling; we took the hardware
+      apart in public and wrote down how it works.
+    </p>
+    <p style="margin-top:26px">
+      <a class="tlink" href="/research/advanced-zk-hardware-acceleration-the-technology-behind-aleo-asic-miner/">
+        Read the teardown <span class="arr">→</span>
+      </a>
+    </p>
+  </section>
+
+  <section class="wrap section rule">
+    <div class="cta">
+      <h2>{zk.length} papers on the proof systems underneath.</h2>
+      <a class="tlink" href="/research/#zk">Read them <span class="arr">→</span></a>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .hero {
+    padding-block: clamp(56px, 8vw, 112px) clamp(32px, 4vw, 56px);
+    display: flex; flex-direction: column; gap: 26px; align-items: flex-start;
+  }
+  .hero h1 { font-size: clamp(38px, 6.4vw, 66px); max-width: 15ch; }
+</style>
