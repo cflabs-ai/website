@@ -316,6 +316,8 @@ td.n, th.n { font-family: var(--f-mono); font-variant-numeric: tabular-nums; whi
 .foot a { color: var(--ink-2); font-size: 14.5px; }
 .foot a:hover { color: var(--ink); }
 .foot__base { margin-top: 32px; padding-top: 18px; border-top: 1px solid var(--line); display: flex; flex-wrap: wrap; gap: 8px 24px; font-size: 13px; color: var(--muted); }
+/* registered company name — set in the mono face so the legal line reads as one */
+.foot__entity { font-family: var(--f-mono); font-size: 12px; letter-spacing: .04em; }
 
 /* ---------- misc ------------------------------------------------------ */
 
